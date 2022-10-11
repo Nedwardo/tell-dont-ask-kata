@@ -21,13 +21,14 @@ namespace TellDontAskKata.Main.Domain
                 {
                     Product = product,
                     Quantity = itemRequest.Quantity,
-                    Tax = OrderCreationUseCase.Round(product.GetUnitaryTax()) * itemRequest.Quantity,
-                    TaxedAmount = OrderCreationUseCase.Round(product.GetUnitaryTaxedAmount()) * itemRequest.Quantity
+                    Tax = product.GetUnitaryTax() * itemRequest.Quantity,
+                    TaxedAmount = product.GetUnitaryTaxedAmount() * itemRequest.Quantity
                 };
                 AddOrderItem(orderItem);
             }
         }
-        public void AddOrderItem(OrderItem orderItem)
+
+        private void AddOrderItem(OrderItem orderItem)
         {
             Items.Add(orderItem);
             Total += orderItem.TaxedAmount;
@@ -52,5 +53,6 @@ namespace TellDontAskKata.Main.Domain
         public decimal Tax { get; set; }
         public OrderStatus Status { get; set; }
         public int Id { get; set; }
+        
     }
 }

@@ -6,14 +6,18 @@ namespace TellDontAskKata.Main.Domain
     {
         public decimal GetUnitaryTax()
         {
-            return (Price / 100m) * Category.TaxPercentage;
+            return Round((Price / 100m) * Category.TaxPercentage);
         }
         public decimal GetUnitaryTaxedAmount()
         {
-            return Price + GetUnitaryTax();
+            return Round(Price + GetUnitaryTax());
         }
         public string Name { get; set; }
         public decimal Price { get; set; }
         public Category Category { get; set; }
+        private static decimal Round(decimal amount)
+        {
+            return decimal.Round(amount, 2, System.MidpointRounding.ToPositiveInfinity);
+        }
     }
 }
