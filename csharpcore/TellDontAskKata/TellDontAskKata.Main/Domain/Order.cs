@@ -7,7 +7,7 @@ namespace TellDontAskKata.Main.Domain
 {
     public class Order
     {
-        public void addOrderItem(OrderItem orderItem)
+        public void AddOrderItem(OrderItem orderItem)
         {
             Items.Add(orderItem);
             Total += orderItem.TaxedAmount;

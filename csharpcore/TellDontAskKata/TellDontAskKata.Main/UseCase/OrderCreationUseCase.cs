@@ -43,7 +43,7 @@ namespace TellDontAskKata.Main.UseCase
                     Tax = Round(product.GetUnitaryTax()) * itemRequest.Quantity,
                     TaxedAmount = Round(product.GetUnitaryTaxedAmount()) * itemRequest.Quantity
                 };
-                order.addOrderItem(orderItem);
+                order.AddOrderItem(orderItem);
             }
 
             _orderRepository.Save(order);
