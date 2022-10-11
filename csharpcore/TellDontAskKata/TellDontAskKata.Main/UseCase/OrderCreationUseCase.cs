@@ -36,7 +36,7 @@ namespace TellDontAskKata.Main.UseCase
                 if (product == null)
                     throw new UnknownProductException();
 
-                var unitaryTax = Round((product.Price / 100m) * product.Category.TaxPercentage);
+                var unitaryTax = getUnitaryTax(product);
                 var unitaryTaxedAmount = Round(product.Price + unitaryTax);
                 var taxedAmount = Round(unitaryTaxedAmount * itemRequest.Quantity);
                 var taxAmount = Round(unitaryTax * itemRequest.Quantity);
@@ -57,7 +57,9 @@ namespace TellDontAskKata.Main.UseCase
             _orderRepository.Save(order);
         }
 
-        private static decimal Round(decimal amount)
+
+
+        public static decimal Round(decimal amount)
         {
             return decimal.Round(amount, 2, System.MidpointRounding.ToPositiveInfinity);
         }
