@@ -7,6 +7,12 @@ namespace TellDontAskKata.Main.Domain
 {
     public class Order
     {
+        public void addOrderItem(OrderItem orderItem)
+        {
+            Items.Add(orderItem);
+            Total += orderItem.TaxedAmount;
+            Tax += orderItem.Tax;
+        }
         public void UpdateStatus(OrderApprovalRequest orderApprovalRequest)
         {
             Status = Status switch

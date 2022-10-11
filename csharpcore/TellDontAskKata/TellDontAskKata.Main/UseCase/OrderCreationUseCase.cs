@@ -43,15 +43,11 @@ namespace TellDontAskKata.Main.UseCase
                     Tax = Round(product.GetUnitaryTax()) * itemRequest.Quantity,
                     TaxedAmount = Round(product.GetUnitaryTaxedAmount()) * itemRequest.Quantity
                 };
-                order.Items.Add(orderItem);
-                order.Total += orderItem.TaxedAmount;
-                order.Tax += orderItem.Tax;
-
+                order.addOrderItem(orderItem);
             }
 
             _orderRepository.Save(order);
         }
-
 
 
         private static decimal Round(decimal amount)
