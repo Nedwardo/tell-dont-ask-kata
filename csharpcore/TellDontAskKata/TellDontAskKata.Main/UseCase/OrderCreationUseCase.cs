@@ -29,31 +29,29 @@ namespace TellDontAskKata.Main.UseCase
                 Tax = 0m
             };
 
-            foreach(var itemRequest in request.Requests){
+            foreach (var itemRequest in request.Requests)
+            {
                 var product = _productCatalog.GetByName(itemRequest.ProductName);
 
                 if (product == null)
-                {
                     throw new UnknownProductException();
-                }
-                else
-                {
-                    var unitaryTax = Round((product.Price / 100m) * product.Category.TaxPercentage);
-                    var unitaryTaxedAmount = Round(product.Price + unitaryTax);
-                    var taxedAmount = Round(unitaryTaxedAmount * itemRequest.Quantity);
-                    var taxAmount = Round(unitaryTax * itemRequest.Quantity);
 
-                    var orderItem = new OrderItem
-                    {
-                        Product = product,
-                        Quantity = itemRequest.Quantity,
-                        Tax = taxAmount,
-                        TaxedAmount = taxedAmount
-                    };
-                    order.Items.Add(orderItem);
-                    order.Total += taxedAmount;
-                    order.Tax += taxAmount;
-                }
+                var unitaryTax = Round((product.Price / 100m) * product.Category.TaxPercentage);
+                var unitaryTaxedAmount = Round(product.Price + unitaryTax);
+                var taxedAmount = Round(unitaryTaxedAmount * itemRequest.Quantity);
+                var taxAmount = Round(unitaryTax * itemRequest.Quantity);
+
+                var orderItem = new OrderItem
+                {
+                    Product = product,
+                    Quantity = itemRequest.Quantity,
+                    Tax = taxAmount,
+                    TaxedAmount = taxedAmount
+                };
+                order.Items.Add(orderItem);
+                order.Total += taxedAmount;
+                order.Tax += taxAmount;
+
             }
 
             _orderRepository.Save(order);
