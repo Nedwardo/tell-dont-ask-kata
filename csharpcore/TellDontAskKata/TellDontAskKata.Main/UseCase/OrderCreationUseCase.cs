@@ -36,15 +36,12 @@ namespace TellDontAskKata.Main.UseCase
                 if (product == null)
                     throw new UnknownProductException();
 
-                var taxedAmount = Round(product.GetUnitaryTaxedAmount()) * itemRequest.Quantity;
-                var taxAmount = Round(product.GetUnitaryTax()) * itemRequest.Quantity;
-
                 var orderItem = new OrderItem
                 {
                     Product = product,
                     Quantity = itemRequest.Quantity,
-                    Tax = taxAmount,
-                    TaxedAmount = taxedAmount
+                    Tax = Round(product.GetUnitaryTax()) * itemRequest.Quantity,
+                    TaxedAmount = Round(product.GetUnitaryTaxedAmount()) * itemRequest.Quantity
                 };
                 order.Items.Add(orderItem);
                 order.Total += orderItem.TaxedAmount;
