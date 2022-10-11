@@ -7,7 +7,7 @@ namespace TellDontAskKata.Main.Domain
 {
     public class Order
     {
-        public Order UpdateStatus(OrderApprovalRequest orderApprovalRequest)
+        public void UpdateStatus(OrderApprovalRequest orderApprovalRequest)
         {
             Status = Status switch
             {
@@ -19,8 +19,6 @@ namespace TellDontAskKata.Main.Domain
                     throw new RejectedOrderCannotBeApprovedException(),
                 _ => orderApprovalRequest.Approved ? OrderStatus.Approved : OrderStatus.Rejected
             };
-
-            return this;
         }
         public decimal Total { get; set; }
         public string Currency { get; set; }
