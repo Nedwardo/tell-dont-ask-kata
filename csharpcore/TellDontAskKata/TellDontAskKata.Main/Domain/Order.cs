@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using TellDontAskKata.Main.Repository;
 using TellDontAskKata.Main.UseCase;
 using TellDontAskKata.Main.UseCase.Exceptions;
 
@@ -7,6 +8,25 @@ namespace TellDontAskKata.Main.Domain
 {
     public class Order
     {
+        public void PopulateOrder(SellItemsRequest request, IProductCatalog _productCatalog)
+        {
+            foreach (var itemRequest in request.Requests)
+            {
+                var product = _productCatalog.GetByName(itemRequest.ProductName);
+
+                if (product == null)
+                    throw new UnknownProductException();
+
+                var orderItem = new OrderItem
+                {
+                    Product = product,
+                    Quantity = itemRequest.Quantity,
+                    Tax = OrderCreationUseCase.Round(product.GetUnitaryTax()) * itemRequest.Quantity,
+                    TaxedAmount = OrderCreationUseCase.Round(product.GetUnitaryTaxedAmount()) * itemRequest.Quantity
+                };
+                AddOrderItem(orderItem);
+            }
+        }
         public void AddOrderItem(OrderItem orderItem)
         {
             Items.Add(orderItem);

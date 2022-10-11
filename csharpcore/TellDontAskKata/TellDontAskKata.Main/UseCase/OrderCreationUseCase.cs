@@ -28,29 +28,13 @@ namespace TellDontAskKata.Main.UseCase
                 Total = 0m,
                 Tax = 0m
             };
-
-            foreach (var itemRequest in request.Requests)
-            {
-                var product = _productCatalog.GetByName(itemRequest.ProductName);
-
-                if (product == null)
-                    throw new UnknownProductException();
-
-                var orderItem = new OrderItem
-                {
-                    Product = product,
-                    Quantity = itemRequest.Quantity,
-                    Tax = Round(product.GetUnitaryTax()) * itemRequest.Quantity,
-                    TaxedAmount = Round(product.GetUnitaryTaxedAmount()) * itemRequest.Quantity
-                };
-                order.AddOrderItem(orderItem);
-            }
+            order.PopulateOrder(request, _productCatalog);
 
             _orderRepository.Save(order);
         }
 
 
-        private static decimal Round(decimal amount)
+        public static decimal Round(decimal amount)
         {
             return decimal.Round(amount, 2, System.MidpointRounding.ToPositiveInfinity);
         }
