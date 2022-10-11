@@ -14,7 +14,7 @@ namespace TellDontAskKata.Main.UseCase
 
         public void Run(OrderApprovalRequest request)
         {
-            var order = _orderRepository.GetById(request.OrderId).NewFunction(request);
+            var order = _orderRepository.GetById(request.OrderId).UpdateStatus(request);
 
             _orderRepository.Save(order);
         }

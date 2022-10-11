@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using TellDontAskKata.Main.UseCase;
 using TellDontAskKata.Main.UseCase.Exceptions;
 
@@ -6,24 +7,19 @@ namespace TellDontAskKata.Main.Domain
 {
     public class Order
     {
-        public Order NewFunction(OrderApprovalRequest orderApprovalRequest)
+        public Order UpdateStatus(OrderApprovalRequest orderApprovalRequest)
         {
-            if (Status == OrderStatus.Shipped)
+            Status = Status switch
             {
-                throw new ShippedOrdersCannotBeChangedException();
-            }
+                OrderStatus.Shipped => 
+                    throw new ShippedOrdersCannotBeChangedException(),
+                OrderStatus.Approved when !orderApprovalRequest.Approved =>
+                    throw new ApprovedOrderCannotBeRejectedException(),
+                OrderStatus.Rejected when Status == OrderStatus.Rejected =>
+                    throw new RejectedOrderCannotBeApprovedException(),
+                _ => orderApprovalRequest.Approved ? OrderStatus.Approved : OrderStatus.Rejected
+            };
 
-            if (orderApprovalRequest.Approved && Status == OrderStatus.Rejected)
-            {
-                throw new RejectedOrderCannotBeApprovedException();
-            }
-
-            if (!orderApprovalRequest.Approved && Status == OrderStatus.Approved)
-            {
-                throw new ApprovedOrderCannotBeRejectedException();
-            }
-
-            Status = orderApprovalRequest.Approved ? OrderStatus.Approved : OrderStatus.Rejected;
             return this;
         }
         public decimal Total { get; set; }
