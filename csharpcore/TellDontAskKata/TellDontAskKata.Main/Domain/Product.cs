@@ -22,6 +22,11 @@
         {
             return Round(Price + GetUnitaryTax());
         }
+        
+        public bool IsName(string name)
+        {
+            return _name == name;
+        }
 
         public string GetName()
         {
