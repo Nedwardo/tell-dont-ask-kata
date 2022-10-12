@@ -83,6 +83,20 @@ namespace TellDontAskKata.Main.Domain
             return _id == id;
         }
 
+        public void CheckIfCanBeShipped()
+        {
+            switch (Status)
+            {
+                case OrderStatus.Created:
+                case OrderStatus.Rejected:
+                    throw new OrderCannotBeShippedException();
+                case OrderStatus.Shipped:
+                    throw new OrderCannotBeShippedTwiceException();
+                case OrderStatus.Approved:
+                default:
+                    return;
+        }
+
         private decimal _total;
         private readonly string _currency;
         private readonly IList<OrderItem> _items;
