@@ -1,5 +1,4 @@
-﻿using System;
-using TellDontAskKata.Main.Domain;
+﻿using TellDontAskKata.Main.Domain;
 using TellDontAskKata.Main.Repository;
 using TellDontAskKata.Main.Service;
 using TellDontAskKata.Main.UseCase.Exceptions;
