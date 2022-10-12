@@ -4,27 +4,33 @@
     {
         public Product()
         {
-            Name = "";
+            _name = "";
             Price = 0;
-            Category = null;
+            _category = null;
         }
         public Product(string name, decimal price, Category category)
         {
-            Name = name;
+            _name = name;
             Price = price;
-            Category = category;
+            _category = category;
         }
         public decimal GetUnitaryTax()
         {
-            return Round((Price / 100m) * Category.GetTaxPercent());
+            return Round((Price / 100m) * _category.GetTaxPercent());
         }
         public decimal GetUnitaryTaxedAmount()
         {
             return Round(Price + GetUnitaryTax());
         }
-        public string Name { get; set; }
-        public decimal Price { get; set; }
-        public Category Category { get; set; }
+
+        public string GetName()
+        {
+            return _name;
+        }
+
+        private readonly string _name;
+        public decimal Price { get; }
+        private readonly Category _category;
         private static decimal Round(decimal amount)
         {
             return decimal.Round(amount, 2, System.MidpointRounding.ToPositiveInfinity);

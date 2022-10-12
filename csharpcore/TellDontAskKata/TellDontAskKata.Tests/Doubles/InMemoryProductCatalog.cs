@@ -16,7 +16,7 @@ namespace TellDontAskKata.Tests.Doubles
 
         public Product GetByName(string name)
         {
-            return _products.FirstOrDefault(p => p.Name == name);
+            return _products.FirstOrDefault(p => p.GetName() == name);
         }
     }
 }
