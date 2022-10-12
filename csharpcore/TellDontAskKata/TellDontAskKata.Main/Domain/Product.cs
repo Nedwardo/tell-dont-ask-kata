@@ -27,6 +27,11 @@
             return _name;
         }
 
+        public decimal GetPrice()
+        {
+            return _price;
+        }
+
         private readonly string _name;
         private readonly decimal _price;
         private readonly Category _category;

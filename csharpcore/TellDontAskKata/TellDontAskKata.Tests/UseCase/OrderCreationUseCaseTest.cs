@@ -63,12 +63,12 @@ namespace TellDontAskKata.Tests.UseCase
             Assert.Equal("EUR", insertedOrder.Currency);
             Assert.Equal(2, insertedOrder.Items.Count);
             Assert.Equal("salad", insertedOrder.Items[0].Product.GetName());
-            Assert.Equal(3.56m, insertedOrder.Items[0].Product.getPrice());
+            Assert.Equal(3.56m, insertedOrder.Items[0].Product.GetPrice());
             Assert.Equal(2, insertedOrder.Items[0].Quantity);
             Assert.Equal(7.84m, insertedOrder.Items[0].TaxedAmount);
             Assert.Equal(0.72m, insertedOrder.Items[0].Tax);
             Assert.Equal("tomato", insertedOrder.Items[1].Product.GetName());
-            Assert.Equal(4.65m, insertedOrder.Items[1].Product.getPrice());
+            Assert.Equal(4.65m, insertedOrder.Items[1].Product.GetPrice());
             Assert.Equal(3, insertedOrder.Items[1].Quantity);
             Assert.Equal(15.36m, insertedOrder.Items[1].TaxedAmount);
             Assert.Equal(1.41m, insertedOrder.Items[1].Tax);
