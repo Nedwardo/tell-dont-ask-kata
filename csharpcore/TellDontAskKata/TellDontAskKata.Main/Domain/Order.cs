@@ -39,7 +39,7 @@ namespace TellDontAskKata.Main.Domain
         {
             _items.Add(orderItem);
             _total += orderItem.TaxedAmount;
-            Tax += orderItem.Tax;
+            _tax += orderItem.Tax;
         }
         public void UpdateStatus(OrderApprovalRequest orderApprovalRequest)
         {
@@ -75,13 +75,13 @@ namespace TellDontAskKata.Main.Domain
 
         public decimal GetTax()
         {
-            return Tax;
+            return _tax;
         }
 
         private decimal _total;
         private readonly string _currency;
         private readonly IList<OrderItem> _items;
-        public decimal Tax { get; set; }
+        private decimal _tax;
         public OrderStatus Status { get; set; }
         public int Id { get; set; }
 
