@@ -78,11 +78,7 @@ namespace TellDontAskKata.Tests.UseCase
         [Fact]
         public void ShippedOrdersCannotBeShippedAgain()
         {
-            var initialOrder = new Order
-            {
-                Status = OrderStatus.Shipped,
-                Id = 1
-            };
+            var initialOrder = new Order(0m, "", new List<OrderItem>(), OrderStatus.Shipped, 1);
             _orderRepository.AddOrder(initialOrder);
 
             var request = new OrderShipmentRequest
