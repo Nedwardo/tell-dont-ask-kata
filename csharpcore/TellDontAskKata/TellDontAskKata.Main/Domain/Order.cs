@@ -53,6 +53,10 @@ namespace TellDontAskKata.Main.Domain
         public decimal Tax { get; set; }
         public OrderStatus Status { get; set; }
         public int Id { get; set; }
-        
+
+        public void Ship()
+        {
+            Status = OrderStatus.Shipped;
+        }
     }
 }
