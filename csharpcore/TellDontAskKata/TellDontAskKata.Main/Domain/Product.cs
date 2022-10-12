@@ -1,6 +1,4 @@
-﻿using TellDontAskKata.Main.UseCase;
-
-namespace TellDontAskKata.Main.Domain
+﻿namespace TellDontAskKata.Main.Domain
 {
     public class Product
     {
