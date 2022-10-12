@@ -62,16 +62,16 @@ namespace TellDontAskKata.Tests.UseCase
             Assert.Equal(2.13m, insertedOrder.Tax);
             Assert.Equal("EUR", insertedOrder.GetCurrency());
             Assert.Equal(2, insertedOrder.ItemsCount());
-            Assert.Equal("salad", insertedOrder.GetItems()[0].Product.GetName());
-            Assert.Equal(3.56m, insertedOrder.GetItems()[0].Product.GetPrice());
-            Assert.Equal(2, insertedOrder.GetItems()[0].Quantity);
-            Assert.Equal(7.84m, insertedOrder.GetItems()[0].TaxedAmount);
-            Assert.Equal(0.72m, insertedOrder.GetItems()[0].Tax);
-            Assert.Equal("tomato", insertedOrder.GetItems()[1].Product.GetName());
-            Assert.Equal(4.65m, insertedOrder.GetItems()[1].Product.GetPrice());
-            Assert.Equal(3, insertedOrder.GetItems()[1].Quantity);
-            Assert.Equal(15.36m, insertedOrder.GetItems()[1].TaxedAmount);
-            Assert.Equal(1.41m, insertedOrder.GetItems()[1].Tax);
+            Assert.Equal("salad", insertedOrder.GetItem(0).Product.GetName());
+            Assert.Equal(3.56m, insertedOrder.GetItem(0).Product.GetPrice());
+            Assert.Equal(2, insertedOrder.GetItem(0).Quantity);
+            Assert.Equal(7.84m, insertedOrder.GetItem(0).TaxedAmount);
+            Assert.Equal(0.72m, insertedOrder.GetItem(0).Tax);
+            Assert.Equal("tomato", insertedOrder.GetItem(1).Product.GetName());
+            Assert.Equal(4.65m, insertedOrder.GetItem(1).Product.GetPrice());
+            Assert.Equal(3, insertedOrder.GetItem(1).Quantity);
+            Assert.Equal(15.36m, insertedOrder.GetItem(1).TaxedAmount);
+            Assert.Equal(1.41m, insertedOrder.GetItem(1).Tax);
         }
 
         [Fact]

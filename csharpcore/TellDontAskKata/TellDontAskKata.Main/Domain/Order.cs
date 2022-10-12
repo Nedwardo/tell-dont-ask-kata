@@ -74,6 +74,11 @@ namespace TellDontAskKata.Main.Domain
             return _items.Count;
         }
 
+        public OrderItem GetItem(int index)
+        {
+            return _items[index];
+        }
+
         private decimal _total;
         private readonly string _currency;
         private readonly IList<OrderItem> _items;
