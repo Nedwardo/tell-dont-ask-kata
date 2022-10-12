@@ -9,7 +9,6 @@ namespace TellDontAskKata.Main.Domain
     public class Order
     {
         public Order() {}
-
         public Order(decimal total, string currency, IList<OrderItem> items, OrderStatus status, int id)
         {
             Total = total;
