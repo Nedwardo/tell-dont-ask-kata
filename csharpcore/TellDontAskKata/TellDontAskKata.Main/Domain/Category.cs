@@ -2,18 +2,13 @@
 {
     public class Category
     {
-        public Category()
-        {
-            Name = "";
-            TaxPercentage = 0;
-        }
         public Category(string name, decimal taxPercentage)
         {
-            Name = name;
+            _name = name;
             TaxPercentage = taxPercentage;
         }
 
-        private string Name { get; set; }
-        public decimal TaxPercentage { get; set; }
+        private string _name;
+        public decimal TaxPercentage { get; }
     }
 }
