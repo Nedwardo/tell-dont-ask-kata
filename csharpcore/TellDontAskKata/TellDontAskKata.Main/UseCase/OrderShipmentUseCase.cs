@@ -1,4 +1,5 @@
-﻿using TellDontAskKata.Main.Domain;
+﻿using System;
+using TellDontAskKata.Main.Domain;
 using TellDontAskKata.Main.Repository;
 using TellDontAskKata.Main.Service;
 using TellDontAskKata.Main.UseCase.Exceptions;
@@ -22,20 +23,21 @@ namespace TellDontAskKata.Main.UseCase
         {
             var order = _orderRepository.GetById(request.OrderId);
 
-            if (order.Status == OrderStatus.Created || order.Status == OrderStatus.Rejected)
+            switch (order.Status)
             {
-                throw new OrderCannotBeShippedException();
+                case OrderStatus.Created:
+                case OrderStatus.Rejected:
+                    throw new OrderCannotBeShippedException();
+                case OrderStatus.Shipped:
+                    throw new OrderCannotBeShippedTwiceException();
+                case OrderStatus.Approved:
+                default:
+                    _shipmentService.Ship(order);
+
+                    order.Status = OrderStatus.Shipped;
+                    _orderRepository.Save(order);
+                    break;
             }
-
-            if (order.Status == OrderStatus.Shipped)
-            {
-                throw new OrderCannotBeShippedTwiceException();
-            }
-
-            _shipmentService.Ship(order);
-
-            order.Status = OrderStatus.Shipped;
-            _orderRepository.Save(order);
         }
     }
 }
