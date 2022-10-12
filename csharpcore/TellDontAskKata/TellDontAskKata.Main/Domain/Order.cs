@@ -64,11 +64,6 @@ namespace TellDontAskKata.Main.Domain
         {
             return _currency;
         }
-
-        public IList<OrderItem> GetItems()
-        {
-            return _items;
-        }
         public int ItemsCount()
         {
             return _items.Count;
