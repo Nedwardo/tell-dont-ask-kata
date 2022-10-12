@@ -23,11 +23,7 @@ namespace TellDontAskKata.Tests.UseCase
         [Fact]
         public void ApprovedExistingOrder()
         {
-            var initialOrder = new Order
-            {
-                Status = OrderStatus.Created,
-                Id = 1
-            };
+            var initialOrder = new Order(0m, "", new List<OrderItem>(), OrderStatus.Created, 1);
             _orderRepository.AddOrder(initialOrder);
 
             var request = new OrderApprovalRequest
@@ -64,11 +60,7 @@ namespace TellDontAskKata.Tests.UseCase
         [Fact]
         public void CannotApproveRejectedOrder()
         {
-            var initialOrder = new Order
-            {
-                Status = OrderStatus.Rejected,
-                Id = 1
-            };
+            var initialOrder = new Order(0m, "", new List<OrderItem>(), OrderStatus.Rejected, 1);
             _orderRepository.AddOrder(initialOrder);
 
             var request = new OrderApprovalRequest
@@ -87,11 +79,7 @@ namespace TellDontAskKata.Tests.UseCase
         [Fact]
         public void CannotRejectApprovedOrder()
         {
-            var initialOrder = new Order
-            {
-                Status = OrderStatus.Approved,
-                Id = 1
-            };
+            var initialOrder = new Order(0m, "", new List<OrderItem>(), OrderStatus.Approved, 1);
             _orderRepository.AddOrder(initialOrder);
 
             var request = new OrderApprovalRequest
@@ -110,11 +98,7 @@ namespace TellDontAskKata.Tests.UseCase
         [Fact]
         public void ShippedOrdersCannotBeRejected()
         {
-            var initialOrder = new Order
-            {
-                Status = OrderStatus.Shipped,
-                Id = 1
-            };
+            var initialOrder = new Order(0m, "", new List<OrderItem>(), OrderStatus.Shipped, 1);
             _orderRepository.AddOrder(initialOrder);
 
             var request = new OrderApprovalRequest
