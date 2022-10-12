@@ -2,12 +2,6 @@
 {
     public class Product
     {
-        public Product()
-        {
-            _name = "";
-            _price = 0;
-            _category = null;
-        }
         public Product(string name, decimal price, Category category)
         {
             _name = name;
