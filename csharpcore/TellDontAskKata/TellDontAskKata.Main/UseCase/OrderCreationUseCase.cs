@@ -20,14 +20,7 @@ namespace TellDontAskKata.Main.UseCase
 
         public void Run(SellItemsRequest request)
         {
-            var order = new Order
-            {
-                Status = OrderStatus.Created,
-                Items = new List<OrderItem>(),
-                Currency = "EUR",
-                Total = 0m,
-                Tax = 0m
-            };
+            var order = new Order(0m, "EUR", new List<OrderItem>(), OrderStatus.Created, 0);
             order.PopulateOrder(request, _productCatalog);
 
             _orderRepository.Save(order);
