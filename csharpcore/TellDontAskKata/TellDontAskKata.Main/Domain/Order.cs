@@ -12,7 +12,7 @@ namespace TellDontAskKata.Main.Domain
             _total = total;
             _currency = currency;
             _items = items;
-            Status = status;
+            _status = status;
             _id = id;
         }
         public void PopulateOrder(SellItemsRequest request, IProductCatalog productCatalog)
@@ -42,13 +42,13 @@ namespace TellDontAskKata.Main.Domain
         }
         public void UpdateStatus(OrderApprovalRequest orderApprovalRequest)
         {
-            Status = Status switch
+            _status = _status switch
             {
                 OrderStatus.Shipped => 
                     throw new ShippedOrdersCannotBeChangedException(),
                 OrderStatus.Approved when !orderApprovalRequest.Approved =>
                     throw new ApprovedOrderCannotBeRejectedException(),
-                OrderStatus.Rejected when Status == OrderStatus.Rejected =>
+                OrderStatus.Rejected when _status == OrderStatus.Rejected =>
                     throw new RejectedOrderCannotBeApprovedException(),
                 _ => orderApprovalRequest.Approved ? OrderStatus.Approved : OrderStatus.Rejected
             };
@@ -84,7 +84,7 @@ namespace TellDontAskKata.Main.Domain
 
         public void Ship()
         {
-            switch (Status)
+            switch (_status)
             {
                 case OrderStatus.Created:
                 case OrderStatus.Rejected:
@@ -93,16 +93,21 @@ namespace TellDontAskKata.Main.Domain
                     throw new OrderCannotBeShippedTwiceException();
                 case OrderStatus.Approved:
                 default:
-                    Status = OrderStatus.Shipped;
+                    _status = OrderStatus.Shipped;
                     return;
             }
+        }
+
+        public OrderStatus GetStatus()
+        {
+            return _status;
         }
 
         private decimal _total;
         private readonly string _currency;
         private readonly IList<OrderItem> _items;
         private decimal _tax;
-        public OrderStatus Status { get; set; }
+        private OrderStatus _status;
         private readonly int _id;
     }
 }

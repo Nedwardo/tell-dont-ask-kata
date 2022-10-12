@@ -35,7 +35,7 @@ namespace TellDontAskKata.Tests.UseCase
             _useCase.Run(request);
 
             var savedOrder = _orderRepository.GetSavedOrder();
-            Assert.Equal(OrderStatus.Approved, savedOrder.Status);
+            Assert.Equal(OrderStatus.Approved, savedOrder.GetStatus());
         }
 
         [Fact]
@@ -53,7 +53,7 @@ namespace TellDontAskKata.Tests.UseCase
             _useCase.Run(request);
 
             var savedOrder = _orderRepository.GetSavedOrder();
-            Assert.Equal(OrderStatus.Rejected, savedOrder.Status);
+            Assert.Equal(OrderStatus.Rejected, savedOrder.GetStatus());
         }
 
 
