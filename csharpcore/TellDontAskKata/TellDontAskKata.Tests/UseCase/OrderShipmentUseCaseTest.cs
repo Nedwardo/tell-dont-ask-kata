@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using TellDontAskKata.Main.Domain;
 using TellDontAskKata.Main.UseCase;
 using TellDontAskKata.Main.UseCase.Exceptions;
@@ -24,11 +25,7 @@ namespace TellDontAskKata.Tests.UseCase
         [Fact]
         public void ShipApprovedOrder()
         {
-            var initialOrder = new Order
-            {
-                Status = OrderStatus.Approved,
-                Id = 1
-            };
+            var initialOrder = new Order(0m, "", new List<OrderItem>(), OrderStatus.Approved, 1);
             _orderRepository.AddOrder(initialOrder);
 
             var request = new OrderShipmentRequest
