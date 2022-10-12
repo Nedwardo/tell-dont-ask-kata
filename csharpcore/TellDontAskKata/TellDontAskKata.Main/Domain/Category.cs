@@ -5,10 +5,15 @@
         public Category(string name, decimal taxPercentage)
         {
             _name = name;
-            TaxPercentage = taxPercentage;
+            _taxPercentage = taxPercentage;
+        }
+
+        public decimal GetTaxPercent()
+        {
+            return _taxPercentage;
         }
 
         private string _name;
-        public decimal TaxPercentage { get; }
+        private readonly decimal _taxPercentage;
     }
 }

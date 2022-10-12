@@ -6,7 +6,7 @@ namespace TellDontAskKata.Main.Domain
     {
         public decimal GetUnitaryTax()
         {
-            return Round((Price / 100m) * Category.TaxPercentage);
+            return Round((Price / 100m) * Category.GetTaxPercent());
         }
         public decimal GetUnitaryTaxedAmount()
         {
