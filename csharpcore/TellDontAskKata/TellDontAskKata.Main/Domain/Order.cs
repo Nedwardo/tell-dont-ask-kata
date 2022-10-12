@@ -83,7 +83,7 @@ namespace TellDontAskKata.Main.Domain
             return _id == id;
         }
 
-        public void CheckIfCanBeShipped()
+        public void Ship()
         {
             switch (Status)
             {
@@ -94,6 +94,7 @@ namespace TellDontAskKata.Main.Domain
                     throw new OrderCannotBeShippedTwiceException();
                 case OrderStatus.Approved:
                 default:
+                    Status = OrderStatus.Shipped;
                     return;
             }
         }
@@ -104,10 +105,5 @@ namespace TellDontAskKata.Main.Domain
         private decimal _tax;
         public OrderStatus Status { get; set; }
         private readonly int _id;
-
-        public void Ship()
-        {
-            Status = OrderStatus.Shipped;
-        }
     }
 }

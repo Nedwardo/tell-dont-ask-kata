@@ -21,8 +21,7 @@ namespace TellDontAskKata.Main.UseCase
         public void Run(OrderShipmentRequest request)
         {
             var order = _orderRepository.GetById(request.OrderId);
-
-            order.CheckIfCanBeShipped();
+            
             _shipmentService.Ship(order);
 
             order.Status = OrderStatus.Shipped;
