@@ -14,7 +14,7 @@ namespace TellDontAskKata.Main.Domain
             _currency = currency;
             _items = items;
             Status = status;
-            Id = id;
+            _id = id;
         }
         public void PopulateOrder(SellItemsRequest request, IProductCatalog _productCatalog)
         {
@@ -78,12 +78,17 @@ namespace TellDontAskKata.Main.Domain
             return _tax;
         }
 
+        public bool IsId(int id)
+        {
+            return _id == id;
+        }
+
         private decimal _total;
         private readonly string _currency;
         private readonly IList<OrderItem> _items;
         private decimal _tax;
         public OrderStatus Status { get; set; }
-        public int Id { get; set; }
+        private readonly int _id;
 
         public void Ship()
         {

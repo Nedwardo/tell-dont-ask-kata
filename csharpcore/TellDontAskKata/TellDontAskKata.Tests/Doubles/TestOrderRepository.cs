@@ -17,7 +17,7 @@ namespace TellDontAskKata.Tests.Doubles
 
         public Order GetById(int orderId)
         {
-            return _orders.FirstOrDefault(o => o.Id == orderId);
+            return _orders.FirstOrDefault(o => o.IsId(orderId));
         }
 
 
