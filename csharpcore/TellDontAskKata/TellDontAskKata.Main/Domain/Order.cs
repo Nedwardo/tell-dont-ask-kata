@@ -10,8 +10,8 @@ namespace TellDontAskKata.Main.Domain
     {
         public Order(decimal total, string currency, IList<OrderItem> items, OrderStatus status, int id)
         {
-            Total = total;
-            Currency = currency;
+            _total = total;
+            _currency = currency;
             Items = items;
             Status = status;
             Id = id;
@@ -38,7 +38,7 @@ namespace TellDontAskKata.Main.Domain
         private void AddOrderItem(OrderItem orderItem)
         {
             Items.Add(orderItem);
-            Total += orderItem.TaxedAmount;
+            _total += orderItem.TaxedAmount;
             Tax += orderItem.Tax;
         }
         public void UpdateStatus(OrderApprovalRequest orderApprovalRequest)
@@ -57,11 +57,16 @@ namespace TellDontAskKata.Main.Domain
 
         public decimal GetTotal()
         {
-            return Total;
+            return _total;
         }
 
-        private decimal Total { get; set; }
-        public string Currency { get; }
+        public string GetCurrency()
+        {
+            return _currency;
+        }
+
+        private decimal _total;
+        private readonly string _currency;
         public IList<OrderItem> Items { get; }
         public decimal Tax { get; set; }
         public OrderStatus Status { get; set; }
