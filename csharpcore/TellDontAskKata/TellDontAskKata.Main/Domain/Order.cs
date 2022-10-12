@@ -54,10 +54,16 @@ namespace TellDontAskKata.Main.Domain
                 _ => orderApprovalRequest.Approved ? OrderStatus.Approved : OrderStatus.Rejected
             };
         }
-        public decimal Total { get; set; }
+
+        public decimal GetTotal()
+        {
+            return Total;
+        }
+
+        private decimal Total { get; set; }
         public string Currency { get; }
         public IList<OrderItem> Items { get; }
-        public decimal Tax { get; }
+        public decimal Tax { get; set; }
         public OrderStatus Status { get; set; }
         public int Id { get; set; }
 
