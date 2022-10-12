@@ -10,9 +10,10 @@
         public Category(string name, decimal taxPercentage)
         {
             Name = name;
-            TaxPercentage = TaxPercentage;
+            TaxPercentage = taxPercentage;
         }
-        public string Name { get; set; }
+
+        private string Name { get; set; }
         public decimal TaxPercentage { get; set; }
     }
 }
