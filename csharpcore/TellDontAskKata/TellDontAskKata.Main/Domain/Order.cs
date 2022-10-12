@@ -24,13 +24,9 @@ namespace TellDontAskKata.Main.Domain
                 if (product == null)
                     throw new UnknownProductException();
 
-                var orderItem = new OrderItem
-                {
-                    Product = product,
-                    Quantity = itemRequest.Quantity,
-                    Tax = product.GetUnitaryTax() * itemRequest.Quantity,
-                    TaxedAmount = product.GetUnitaryTaxedAmount() * itemRequest.Quantity
-                };
+                var orderItem = new OrderItem(product, itemRequest.Quantity,
+                    product.GetUnitaryTaxedAmount() * itemRequest.Quantity,
+                    product.GetUnitaryTax() * itemRequest.Quantity);
                 AddOrderItem(orderItem);
             }
         }

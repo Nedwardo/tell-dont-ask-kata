@@ -4,10 +4,6 @@ namespace TellDontAskKata.Main.Domain
 {
     public class OrderItem
     {
-        public OrderItem()
-        {
-        }
-
         public OrderItem(Product product, int quantity, decimal taxedAmount, decimal tax)
         {
             Product = product;
