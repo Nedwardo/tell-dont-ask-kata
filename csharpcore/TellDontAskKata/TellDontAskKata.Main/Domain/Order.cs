@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using TellDontAskKata.Main.Repository;
 using TellDontAskKata.Main.UseCase;
 using TellDontAskKata.Main.UseCase.Exceptions;
@@ -16,11 +15,11 @@ namespace TellDontAskKata.Main.Domain
             Status = status;
             _id = id;
         }
-        public void PopulateOrder(SellItemsRequest request, IProductCatalog _productCatalog)
+        public void PopulateOrder(SellItemsRequest request, IProductCatalog productCatalog)
         {
             foreach (var itemRequest in request.Requests)
             {
-                var product = _productCatalog.GetByName(itemRequest.ProductName);
+                var product = productCatalog.GetByName(itemRequest.ProductName);
 
                 if (product == null)
                     throw new UnknownProductException();
