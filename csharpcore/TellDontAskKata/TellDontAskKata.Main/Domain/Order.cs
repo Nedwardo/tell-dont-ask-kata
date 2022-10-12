@@ -8,7 +8,6 @@ namespace TellDontAskKata.Main.Domain
 {
     public class Order
     {
-        public Order() {}
         public Order(decimal total, string currency, IList<OrderItem> items, OrderStatus status, int id)
         {
             Total = total;
@@ -56,9 +55,9 @@ namespace TellDontAskKata.Main.Domain
             };
         }
         public decimal Total { get; set; }
-        public string Currency { get; set; }
-        public IList<OrderItem> Items { get; set; }
-        public decimal Tax { get; set; }
+        public string Currency { get; }
+        public IList<OrderItem> Items { get; }
+        public decimal Tax { get; }
         public OrderStatus Status { get; set; }
         public int Id { get; set; }
 
