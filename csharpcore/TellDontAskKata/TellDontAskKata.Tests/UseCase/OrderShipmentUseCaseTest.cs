@@ -60,11 +60,7 @@ namespace TellDontAskKata.Tests.UseCase
         [Fact]
         public void RejectedOrdersCannotBeShipped()
         {
-            var initialOrder = new Order
-            {
-                Status = OrderStatus.Rejected,
-                Id = 1
-            };
+            var initialOrder = new Order(0m, "", new List<OrderItem>(), OrderStatus.Rejected, 1);
             _orderRepository.AddOrder(initialOrder);
 
             var request = new OrderShipmentRequest
