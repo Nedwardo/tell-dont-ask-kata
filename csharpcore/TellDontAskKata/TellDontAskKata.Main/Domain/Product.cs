@@ -2,6 +2,18 @@
 {
     public class Product
     {
+        public Product()
+        {
+            Name = "";
+            Price = 0;
+            Category = null;
+        }
+        public Product(string name, decimal price, Category category)
+        {
+            Name = name;
+            Price = price;
+            Category = category;
+        }
         public decimal GetUnitaryTax()
         {
             return Round((Price / 100m) * Category.GetTaxPercent());
