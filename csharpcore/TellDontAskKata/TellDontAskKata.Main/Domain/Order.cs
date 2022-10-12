@@ -95,6 +95,7 @@ namespace TellDontAskKata.Main.Domain
                 case OrderStatus.Approved:
                 default:
                     return;
+            }
         }
 
         private decimal _total;
