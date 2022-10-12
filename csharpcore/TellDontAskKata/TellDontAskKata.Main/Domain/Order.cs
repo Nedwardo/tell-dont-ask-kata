@@ -69,6 +69,10 @@ namespace TellDontAskKata.Main.Domain
         {
             return _items;
         }
+        public int ItemsCount()
+        {
+            return _items.Count;
+        }
 
         private decimal _total;
         private readonly string _currency;
