@@ -4,12 +4,12 @@ namespace TellDontAskKata.Main.Domain
 {
     public class OrderItem
     {
-        public OrderItem(Product product, int quantity, decimal taxedAmount, decimal tax)
+        public OrderItem(Product product, int quantity)
         {
             Product = product;
             Quantity = quantity;
-            TaxedAmount = taxedAmount;
-            Tax = tax;
+            TaxedAmount = product.GetUnitaryTaxedAmount() * quantity;
+            Tax = product.GetUnitaryTax() * quantity;
         }
 
         public string GetProductName()
