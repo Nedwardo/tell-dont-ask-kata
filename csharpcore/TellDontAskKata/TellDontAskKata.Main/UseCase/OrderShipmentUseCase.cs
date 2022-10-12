@@ -21,10 +21,7 @@ namespace TellDontAskKata.Main.UseCase
         public void Run(OrderShipmentRequest request)
         {
             var order = _orderRepository.GetById(request.OrderId);
-            
             _shipmentService.Ship(order);
-
-            order.Status = OrderStatus.Shipped;
             _orderRepository.Save(order);
 
         }
