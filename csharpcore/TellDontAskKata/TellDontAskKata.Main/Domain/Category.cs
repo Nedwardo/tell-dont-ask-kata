@@ -2,6 +2,11 @@
 {
     public class Category
     {
+        public Category()
+        {
+            Name = "";
+            TaxPercentage = 0;
+        }
         public Category(string name, decimal taxPercentage)
         {
             Name = name;
