@@ -68,10 +68,14 @@ namespace TellDontAskKata.Main.Domain
         {
             return _items.Count;
         }
-
         public OrderItem GetItem(int index)
         {
             return _items[index];
+        }
+
+        public decimal GetTax()
+        {
+            return Tax;
         }
 
         private decimal _total;
